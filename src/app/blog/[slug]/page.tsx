@@ -141,11 +141,18 @@ const posts = {
 } as const;
 
 type BlogPostPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = posts[params.slug as keyof typeof posts];
+export function generateStaticParams() {
+  return Object.keys(posts).map((slug) => ({
+    slug: slug,
+  }));
+}
+
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params;
+  const post = posts[slug as keyof typeof posts];
 
   if (!post) {
     notFound();
@@ -153,22 +160,22 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <article className="bg-(--color-background) transition-colors duration-300">
-      <div className="border-b border-(--color-border) bg-(--color-hero-bg) py-12 text-(--color-hero-text) transition-colors duration-300">
-        <Container className="space-y-6 py-0">
+      <div className="border-b border-(--color-border) bg-(--color-hero-bg) py-8 text-(--color-hero-text) transition-colors duration-300 md:py-12">
+        <Container className="space-y-4 py-0 md:space-y-6">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-(--color-primary-soft) transition hover:text-(--color-primary-strong)"
+            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-(--color-primary-soft) transition hover:text-(--color-primary-strong) md:text-sm"
           >
             ← Voltar ao blog
           </Link>
-          <div className="space-y-4">
-            <span className="inline-block rounded-full bg-(--color-surface-alt) px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-(--color-primary-soft)">
+          <div className="space-y-3 md:space-y-4">
+            <span className="inline-block rounded-full bg-(--color-surface-alt) px-3 py-1 text-[10px] font-semibold uppercase tracking-wide text-(--color-primary-soft) md:px-4 md:py-1.5 md:text-xs">
               {post.category}
             </span>
-            <h1 className="text-4xl font-semibold leading-tight md:text-5xl">
+            <h1 className="text-2xl font-semibold leading-tight md:text-4xl lg:text-5xl">
               {post.title}
             </h1>
-            <div className="flex flex-wrap items-center gap-4 text-sm text-(--color-muted)">
+            <div className="flex flex-wrap items-center gap-2 text-xs text-(--color-muted) md:gap-4 md:text-sm">
               <span>{post.author}</span>
               <span>•</span>
               <span>{post.date}</span>
@@ -179,21 +186,21 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
         </Container>
       </div>
 
-      <Container className="py-12">
-        <div className="mx-auto max-w-3xl space-y-8">
-          <p className="text-lg leading-relaxed text-(--color-foreground-muted)">
+      <Container className="py-8 md:py-12">
+        <div className="mx-auto max-w-3xl space-y-6 md:space-y-8">
+          <p className="text-base leading-relaxed text-(--color-foreground-muted) md:text-lg">
             {post.content.introduction}
           </p>
 
           {post.content.sections.map((section, index) => (
-            <section key={index} className="space-y-4">
-              <h2 className="text-2xl font-semibold text-(--color-primary-strong)">
+            <section key={index} className="space-y-3 md:space-y-4">
+              <h2 className="text-xl font-semibold text-(--color-primary-strong) md:text-2xl">
                 {section.title}
               </h2>
               {section.paragraphs.map((paragraph, pIndex) => (
                 <p
                   key={pIndex}
-                  className="leading-relaxed text-(--color-foreground-muted)"
+                  className="text-sm leading-relaxed text-(--color-foreground-muted) md:text-base"
                 >
                   {paragraph}
                 </p>
@@ -201,36 +208,36 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             </section>
           ))}
 
-          <div className="rounded-3xl border border-(--color-border) bg-(--color-surface-alt) p-8 transition-colors duration-300">
-            <h3 className="text-xl font-semibold text-(--color-primary-strong)">
+          <div className="rounded-2xl border border-(--color-border) bg-(--color-surface-alt) p-5 transition-colors duration-300 md:rounded-3xl md:p-8">
+            <h3 className="text-lg font-semibold text-(--color-primary-strong) md:text-xl">
               Conclusão
             </h3>
-            <p className="mt-4 leading-relaxed text-(--color-foreground-muted)">
+            <p className="mt-3 text-sm leading-relaxed text-(--color-foreground-muted) md:mt-4 md:text-base">
               {post.content.conclusion}
             </p>
           </div>
 
-          <div className="rounded-3xl border border-(--color-border) bg-(--color-hero-bg) p-8 text-(--color-hero-text) transition-colors duration-300">
-            <h3 className="text-xl font-semibold">
+          <div className="rounded-2xl border border-(--color-border) bg-(--color-hero-bg) p-5 text-(--color-hero-text) transition-colors duration-300 md:rounded-3xl md:p-8">
+            <h3 className="text-lg font-semibold md:text-xl">
               Precisa de orientação jurídica?
             </h3>
-            <p className="mt-3 text-sm leading-relaxed text-(--color-hero-muted)">
+            <p className="mt-2 text-xs leading-relaxed text-(--color-hero-muted) md:mt-3 md:text-sm">
               Nossa equipe está pronta para analisar seu caso e desenvolver uma
               estratégia personalizada. Entre em contato e agende uma
               consultoria.
             </p>
             <Link
               href="/#contato"
-              className="mt-6 inline-flex rounded-full bg-(--color-cta-bg) px-6 py-3 text-sm font-semibold uppercase tracking-wide text-(--color-cta-text) transition hover:bg-(--color-cta-bg-hover)"
+              className="mt-4 inline-flex rounded-full bg-(--color-cta-bg) px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-(--color-cta-text) transition hover:bg-(--color-cta-bg-hover) md:mt-6 md:px-6 md:py-3 md:text-sm"
             >
               Fale conosco
             </Link>
           </div>
 
-          <div className="border-t border-(--color-border) pt-8">
+          <div className="border-t border-(--color-border) pt-6 md:pt-8">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-(--color-primary-soft) transition hover:text-(--color-primary-strong)"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-(--color-primary-soft) transition hover:text-(--color-primary-strong) md:text-sm"
             >
               ← Ver todos os artigos
             </Link>

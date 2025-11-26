@@ -42,20 +42,20 @@ const practiceAreas = [
 
 export default function AreaDeAtuacaoPage() {
   return (
-    <div className="bg-(--color-background) pb-16 transition-colors duration-300">
+    <div className="bg-(--color-background) pb-10 transition-colors duration-300 md:pb-16">
       <PageHeader
         eyebrow="Especialidades"
         title="Áreas de atuação"
         description="Selecionamos abaixo as principais frentes do escritório. Clique em cada área para visualizar os principais serviços e diferenciais oferecidos."
       />
 
-      <Container className="gap-10 py-12 md:flex">
-        <nav className="md:w-56">
-          <ul className="sticky top-28 space-y-3">
+      <Container className="gap-6 py-8 md:gap-10 md:py-12 lg:flex">
+        <nav className="mb-6 lg:mb-0 lg:w-56">
+          <ul className="flex gap-2 overflow-x-auto pb-2 lg:sticky lg:top-28 lg:flex-col lg:space-y-3 lg:overflow-visible lg:pb-0">
             {practiceAreas.map((area) => (
-              <li key={area.id}>
+              <li key={area.id} className="shrink-0 lg:shrink">
                 <a
-                  className="block rounded-xl border border-transparent bg-(--color-surface-alt) px-4 py-3 text-sm font-semibold text-(--color-primary-soft) transition hover:border-(--color-border)"
+                  className="block whitespace-nowrap rounded-xl border border-transparent bg-(--color-surface-alt) px-3 py-2 text-xs font-semibold text-(--color-primary-soft) transition hover:border-(--color-border) md:px-4 md:py-3 md:text-sm lg:whitespace-normal"
                   href={`#${area.id}`}
                 >
                   {area.title}
@@ -64,28 +64,28 @@ export default function AreaDeAtuacaoPage() {
             ))}
           </ul>
         </nav>
-        <div className="flex-1 space-y-12">
+        <div className="flex-1 space-y-8 md:space-y-12">
           {practiceAreas.map((area) => (
             <section
               key={area.id}
               id={area.id}
-              className="rounded-3xl border border-(--color-border) bg-(--color-surface-alt) p-8 shadow-sm transition-colors duration-300"
+              className="rounded-2xl border border-(--color-border) bg-(--color-surface-alt) p-5 shadow-sm transition-colors duration-300 md:rounded-3xl md:p-8"
             >
-              <h2 className="text-2xl font-semibold text-(--color-primary-strong)">
+              <h2 className="text-xl font-semibold text-(--color-primary-strong) md:text-2xl">
                 {area.title}
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-(--color-foreground-muted)">
+              <p className="mt-2 text-xs leading-relaxed text-(--color-foreground-muted) md:mt-3 md:text-sm">
                 {area.description}
               </p>
-              <div className="mt-6 space-y-3">
-                <p className="text-sm font-semibold uppercase tracking-wide text-(--color-primary-soft)">
+              <div className="mt-4 space-y-2 md:mt-6 md:space-y-3">
+                <p className="text-xs font-semibold uppercase tracking-wide text-(--color-primary-soft) md:text-sm">
                   Principais serviços
                 </p>
-                <ul className="grid gap-2 text-sm text-(--color-foreground-muted) md:grid-cols-2">
+                <ul className="grid gap-2 text-xs text-(--color-foreground-muted) md:grid-cols-2 md:text-sm">
                   {area.services.map((service) => (
                     <li
                       key={service}
-                      className="rounded-xl border border-(--color-border) bg-(--color-card-alt) px-4 py-3 transition-colors duration-300"
+                      className="rounded-xl border border-(--color-border) bg-(--color-card-alt) px-3 py-2 transition-colors duration-300 md:px-4 md:py-3"
                     >
                       {service}
                     </li>

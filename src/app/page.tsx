@@ -60,11 +60,11 @@ export default function Home() {
       />
 
       <section className="bg-(--color-background) transition-colors duration-300">
-        <Container className="space-y-10">
-          <h2 className="text-3xl font-semibold text-(--color-primary-strong) md:text-4xl">
+        <Container className="space-y-6 md:space-y-10">
+          <h2 className="text-2xl font-semibold text-(--color-primary-strong) md:text-3xl lg:text-4xl">
             Principais áreas de atuação
           </h2>
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
             {practiceAreas.map((area) => (
               <PracticeAreaCard
                 key={area.title}
@@ -77,17 +77,17 @@ export default function Home() {
       </section>
 
       <section className="bg-(--color-surface) transition-colors duration-300">
-        <Container className="grid gap-10 md:grid-cols-2 md:items-center">
-          <div className="space-y-5">
-            <h2 className="text-3xl font-semibold text-(--color-primary-strong)">
+        <Container className="grid gap-8 md:gap-10 lg:grid-cols-2 lg:items-center">
+          <div className="space-y-4 md:space-y-5">
+            <h2 className="text-2xl font-semibold text-(--color-primary-strong) md:text-3xl">
               Como podemos apoiar o seu negócio
             </h2>
-            <p className="text-base leading-relaxed text-(--color-foreground-muted)">
+            <p className="text-sm leading-relaxed text-(--color-foreground-muted) md:text-base">
               Do diagnóstico jurídico completo ao acompanhamento de audiências e
               negociações, nossa equipe atua ao seu lado para antecipar riscos,
               fortalecer contratos e construir soluções de longo prazo.
             </p>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-2 text-sm md:space-y-3">
               {highlights.map((item) => (
                 <HighlightCard
                   key={item.title}
@@ -97,11 +97,11 @@ export default function Home() {
               ))}
             </ul>
           </div>
-          <div className="rounded-3xl border border-(--color-border) bg-(--color-surface-alt) p-8 shadow-lg transition-colors duration-300">
-            <h3 className="text-xl font-semibold text-(--color-primary-soft)">
+          <div className="rounded-2xl border border-(--color-border) bg-(--color-surface-alt) p-6 shadow-lg transition-colors duration-300 md:rounded-3xl md:p-8">
+            <h3 className="text-lg font-semibold text-(--color-primary-soft) md:text-xl">
               Diferenciais do escritório
             </h3>
-            <ul className="mt-6 space-y-4 text-sm text-(--color-foreground-muted)">
+            <ul className="mt-4 space-y-3 text-xs text-(--color-foreground-muted) md:mt-6 md:space-y-4 md:text-sm">
               <li>
                 • Relatórios mensais com indicadores e etapas do processo.
               </li>
@@ -118,15 +118,15 @@ export default function Home() {
         id="contato"
         className="bg-(--color-surface) transition-colors duration-300"
       >
-        <Container className="space-y-6">
-          <h2 className="text-3xl font-semibold text-(--color-primary-strong)">
+        <Container className="space-y-4 md:space-y-6">
+          <h2 className="text-2xl font-semibold text-(--color-primary-strong) md:text-3xl">
             Pronto para conversar?
           </h2>
-          <p className="max-w-2xl text-sm text-(--color-foreground-muted) md:text-base">
+          <p className="max-w-2xl text-xs text-(--color-foreground-muted) md:text-sm lg:text-base">
             Conte-nos sobre a sua necessidade jurídica e retornaremos com um
             plano de ação personalizado.
           </p>
-          <div className="grid gap-4 text-sm md:grid-cols-3">
+          <div className="grid gap-3 text-sm md:grid-cols-2 md:gap-4 lg:grid-cols-3">
             <ContactCard
               label="Telefone"
               value="(11) 98888-0000"
