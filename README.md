@@ -15,6 +15,7 @@ Website institucional desenvolvido para o escritório Navarro Advocacia, oferece
 ### ✨ Funcionalidades
 
 #### Área Pública
+
 - **Home Page**: Apresentação do escritório com estatísticas e áreas de atuação
 - **Áreas de Atuação**: Detalhamento dos serviços oferecidos
 - **Blog Jurídico**: Artigos sobre temas de Direito Empresarial, Civil e Trabalhista
@@ -23,6 +24,7 @@ Website institucional desenvolvido para o escritório Navarro Advocacia, oferece
 - **Design Responsivo**: Otimizado para desktop, tablet e mobile
 
 #### Painel Administrativo
+
 - **Gestão de Blog**: Criar, editar e excluir artigos
 - **Editor de Artigos**: Interface completa com suporte a imagens
 - **Gestão de Horários**: Configuração de horários de funcionamento
@@ -70,6 +72,7 @@ npm run lint     # Executa verificação de lint
 **URL**: `/admin/login`
 
 **Credenciais de Demo**:
+
 - Email: `admin@navarroadv.com`
 - Senha: `admin123`
 
@@ -100,12 +103,14 @@ npm run lint     # Executa verificação de lint
 O painel administrativo permite:
 
 1. **Blog**
+
    - Criar novos artigos com editor completo
    - Adicionar imagens via URL
    - Definir categoria e status (publicado/rascunho)
    - Editar e excluir artigos existentes
 
 2. **Horários de Funcionamento**
+
    - Editar dias e horários
    - Toggle aberto/fechado
    - Adicionar novos horários
@@ -146,6 +151,7 @@ Modern institutional website for Navarro Law Firm, specializing in Corporate, Ci
 ### ✨ Features
 
 #### Public Area
+
 - **Home Page**: Firm presentation with statistics and practice areas
 - **Practice Areas**: Detailed service information
 - **Legal Blog**: Articles on Corporate, Civil, and Labor Law
@@ -154,6 +160,7 @@ Modern institutional website for Navarro Law Firm, specializing in Corporate, Ci
 - **Responsive Design**: Optimized for desktop, tablet, and mobile
 
 #### Admin Panel
+
 - **Blog Management**: Create, edit, and delete articles
 - **Article Editor**: Complete interface with image support
 - **Schedule Management**: Configure business hours
@@ -201,6 +208,7 @@ npm run lint     # Run lint check
 **URL**: `/admin/login`
 
 **Demo Credentials**:
+
 - Email: `admin@navarroadv.com`
 - Password: `admin123`
 
@@ -231,12 +239,14 @@ npm run lint     # Run lint check
 The admin panel allows:
 
 1. **Blog**
+
    - Create new articles with complete editor
    - Add images via URL
    - Set category and status (published/draft)
    - Edit and delete existing articles
 
 2. **Business Hours**
+
    - Edit days and hours
    - Toggle open/closed
    - Add new schedules
