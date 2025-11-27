@@ -51,7 +51,7 @@ export function Header() {
               <li>
                 <Link
                   className="transition hover:text-(--color-muted)"
-                  href="/#contato"
+                  href="/contato"
                 >
                   Contato
                 </Link>
@@ -126,7 +126,7 @@ export function Header() {
             <li>
               <Link
                 className="block py-2 transition hover:text-(--color-muted)"
-                href="/#contato"
+                href="/contato"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contato

@@ -41,13 +41,13 @@ export function HeroSection({
           <div className="flex flex-wrap gap-3 md:gap-4">
             <Link
               href={primaryCtaHref}
-              className="rounded-full bg-(--color-cta-bg) px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-(--color-cta-text) transition hover:bg-(--color-cta-bg-hover) md:px-6 md:py-3 md:text-sm"
+              className="rounded-full bg-[#102d40] dark:bg-[#98a1a6] px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-white dark:text-[#011126] shadow-lg transition-all hover:shadow-xl hover:scale-105 hover:brightness-110 md:px-6 md:py-3 md:text-sm"
             >
               {primaryCtaText}
             </Link>
             <Link
               href={secondaryCtaHref}
-              className="rounded-full border border-(--color-cta-border) px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-(--color-foreground) transition hover:border-(--color-muted) hover:text-(--color-muted) md:px-6 md:py-3 md:text-sm"
+              className="rounded-full border-2 border-[#102d40] dark:border-[#98a1a6] bg-transparent px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-[#102d40] dark:text-[#98a1a6] transition-all hover:bg-[#102d40] hover:text-white dark:hover:bg-[#98a1a6] dark:hover:text-[#011126] md:px-6 md:py-3 md:text-sm"
             >
               {secondaryCtaText}
             </Link>

@@ -30,11 +30,16 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
       type="button"
       aria-label={label}
       onClick={toggleTheme}
-      className={`flex h-9 w-9 items-center justify-center rounded-full border border-(--color-border) bg-(--color-background)/70 text-sm transition hover:border-(--color-primary-soft) hover:text-(--color-primary-strong) ${
+      className={`flex h-8 w-8 items-center justify-center rounded-full bg-transparent text-lg transition-all duration-500 hover:rotate-180 ${
         className ?? ""
       }`.trim()}
     >
-      <span aria-hidden>{icon}</span>
+      <span
+        aria-hidden
+        className="opacity-50 transition-opacity duration-300 hover:opacity-80"
+      >
+        {icon}
+      </span>
     </button>
   );
 }

@@ -2,7 +2,6 @@ import { Container } from "@/components/Container";
 import { HeroSection } from "@/components/HeroSection";
 import { PracticeAreaCard } from "@/components/PracticeAreaCard";
 import { HighlightCard } from "@/components/HighlightCard";
-import { ContactCard } from "@/components/ContactCard";
 
 const practiceAreas = [
   {
@@ -50,7 +49,7 @@ export default function Home() {
         primaryCtaText="Conheça as áreas"
         primaryCtaHref="/areadeatuacao"
         secondaryCtaText="Fale conosco"
-        secondaryCtaHref="/#contato"
+        secondaryCtaHref="/contato"
         statsTitle="Compromisso com resultados"
         statsDescription="Mais de 10 anos de atuação em consultoria e contencioso estratégico, com presença em demandas de alto impacto e construção de soluções preventivas para nossos clientes."
         stats={[
@@ -110,37 +109,6 @@ export default function Home() {
                 • Rede de parceiros multidisciplinares para demandas complexas.
               </li>
             </ul>
-          </div>
-        </Container>
-      </section>
-
-      <section
-        id="contato"
-        className="bg-(--color-surface) transition-colors duration-300"
-      >
-        <Container className="space-y-4 md:space-y-6">
-          <h2 className="text-2xl font-semibold text-(--color-primary-strong) md:text-3xl">
-            Pronto para conversar?
-          </h2>
-          <p className="max-w-2xl text-xs text-(--color-foreground-muted) md:text-sm lg:text-base">
-            Conte-nos sobre a sua necessidade jurídica e retornaremos com um
-            plano de ação personalizado.
-          </p>
-          <div className="grid gap-3 text-sm md:grid-cols-2 md:gap-4 lg:grid-cols-3">
-            <ContactCard
-              label="Telefone"
-              value="(11) 98888-0000"
-              href="tel:+5511988880000"
-            />
-            <ContactCard
-              label="E-mail"
-              value="contato@navarroadv.com"
-              href="mailto:contato@navarroadv.com"
-            />
-            <ContactCard
-              label="Endereço"
-              value="Av. Paulista, 1000 • São Paulo/SP"
-            />
           </div>
         </Container>
       </section>

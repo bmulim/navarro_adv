@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/Container";
 
 const posts = {
@@ -9,6 +10,7 @@ const posts = {
     date: "15 nov 2025",
     author: "Dr. Ricardo Navarro",
     readTime: "5 min",
+    imageUrl: "",
     excerpt:
       "Entenda como um plano jurídico preventivo reduz litígios e garante decisões estratégicas para o negócio.",
     content: {
@@ -54,6 +56,7 @@ const posts = {
     date: "02 nov 2025",
     author: "Dr. Ricardo Navarro",
     readTime: "6 min",
+    imageUrl: "",
     excerpt:
       "Boas práticas para conduzir negociações coletivas e individuais com foco em preservação financeira.",
     content: {
@@ -99,6 +102,7 @@ const posts = {
     date: "20 out 2025",
     author: "Dr. Ricardo Navarro",
     readTime: "7 min",
+    imageUrl: "",
     excerpt:
       "Saiba quais cláusulas não podem faltar em contratos digitais para proteger dados e garantir validade jurídica.",
     content: {
@@ -186,6 +190,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </Container>
       </div>
 
+      {post.imageUrl && (
+        <div className="relative h-64 w-full md:h-96 lg:h-[500px]">
+          <Image
+            src={post.imageUrl}
+            alt={post.title}
+            fill
+            className="object-cover"
+            priority
+            unoptimized
+          />
+        </div>
+      )}
+
       <Container className="py-8 md:py-12">
         <div className="mx-auto max-w-3xl space-y-6 md:space-y-8">
           <p className="text-base leading-relaxed text-(--color-foreground-muted) md:text-lg">
@@ -227,8 +244,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               consultoria.
             </p>
             <Link
-              href="/#contato"
-              className="mt-4 inline-flex rounded-full bg-(--color-cta-bg) px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-(--color-cta-text) transition hover:bg-(--color-cta-bg-hover) md:mt-6 md:px-6 md:py-3 md:text-sm"
+              href="/contato"
+              className="mt-4 inline-flex rounded-full bg-[#102d40] dark:bg-[#98a1a6] px-5 py-2.5 text-xs font-semibold uppercase tracking-wide text-white dark:text-[#011126] shadow-lg transition-all hover:shadow-xl hover:scale-105 hover:brightness-110 md:mt-6 md:px-6 md:py-3 md:text-sm"
             >
               Fale conosco
             </Link>
