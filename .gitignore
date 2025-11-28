@@ -9,6 +9,7 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+/backend_navarro_adv/node_modules
 
 # testing
 /coverage
