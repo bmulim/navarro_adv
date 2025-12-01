@@ -35,6 +35,7 @@ export class PostsService {
         content: createPostDto.content,
         excerpt: createPostDto.excerpt,
         imageUrl: createPostDto.imageUrl,
+        category: createPostDto.category,
         published: createPostDto.published ?? false,
       })
       .returning();
@@ -62,6 +63,9 @@ export class PostsService {
     }
     if (updatePostDto.imageUrl !== undefined) {
       updateData.imageUrl = updatePostDto.imageUrl;
+    }
+    if (updatePostDto.category !== undefined) {
+      updateData.category = updatePostDto.category;
     }
     if (updatePostDto.published !== undefined) {
       updateData.published = updatePostDto.published;

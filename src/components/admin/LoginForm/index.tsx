@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { authApi } from "@/lib/api";
 
 export function LoginForm() {
   const router = useRouter();
@@ -10,24 +11,57 @@ export function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [checking, setChecking] = useState(true);
+
+  useEffect(() => {
+    // Verificar se precisa de setup
+    const checkSetup = async () => {
+      try {
+        const response = await authApi.checkSetup();
+        if (response.data.needsSetup) {
+          // Redirecionar para tela de setup
+          router.push("/admin/setup");
+        }
+      } catch (error) {
+        console.error("Erro ao verificar setup:", error);
+      } finally {
+        setChecking(false);
+      }
+    };
+
+    checkSetup();
+  }, [router]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setLoading(true);
 
-    // Simulação de login (apenas frontend)
-    setTimeout(() => {
-      if (email === "admin@navarroadv.com" && password === "admin123") {
-        // Salvar token simulado no localStorage
-        localStorage.setItem("admin-token", "fake-jwt-token");
-        router.push("/admin");
-      } else {
-        setError("Email ou senha incorretos");
-      }
+    try {
+      const response = await authApi.login({ email, password });
+
+      // Salvar token no localStorage
+      localStorage.setItem("admin-token", response.data.access_token);
+
+      // Redirecionar para admin
+      router.push("/admin");
+    } catch (error: any) {
+      console.error("Login error:", error);
+      setError(error?.response?.message || "Email ou senha incorretos");
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
+
+  if (checking) {
+    return (
+      <div className="rounded-2xl border border-(--color-border) bg-(--color-surface-alt) p-6 shadow-lg transition-colors duration-300 md:rounded-3xl md:p-8">
+        <div className="flex items-center justify-center py-8">
+          <div className="animate-spin rounded-full h-8 w-8 border-4 border-(--color-border) border-t-(--color-primary-soft)" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="rounded-2xl border border-(--color-border) bg-(--color-surface-alt) p-6 shadow-lg transition-colors duration-300 md:rounded-3xl md:p-8">
@@ -90,24 +124,6 @@ export function LoginForm() {
         >
           ← Voltar ao site
         </Link>
-      </div>
-
-      <div className="mt-6 rounded-lg border border-(--color-border) bg-(--color-background) p-4">
-        <p className="text-xs text-(--color-muted) mb-2">
-          <strong>Demo:</strong> Use as credenciais abaixo para testar:
-        </p>
-        <p className="text-xs text-(--color-foreground-muted)">
-          Email:{" "}
-          <code className="bg-(--color-surface-alt) px-1 py-0.5 rounded">
-            admin@navarroadv.com
-          </code>
-        </p>
-        <p className="text-xs text-(--color-foreground-muted)">
-          Senha:{" "}
-          <code className="bg-(--color-surface-alt) px-1 py-0.5 rounded">
-            admin123
-          </code>
-        </p>
       </div>
     </div>
   );

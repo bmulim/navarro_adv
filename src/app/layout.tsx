@@ -25,7 +25,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" data-theme="light" suppressHydrationWarning>
-      <body className={`${montserrat.variable} antialiased`}>
+      <body
+        className={`${montserrat.variable} antialiased`}
+        suppressHydrationWarning
+      >
         <ThemeProvider>
           <div className="flex min-h-screen flex-col bg-(--color-background) text-(--color-foreground) transition-colors duration-300">
             <Header />

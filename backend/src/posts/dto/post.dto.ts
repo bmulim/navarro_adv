@@ -31,6 +31,11 @@ export class CreatePostDto {
   imageUrl?: string;
 
   @IsOptional()
+  @IsString()
+  @MaxLength(100, { message: 'Categoria deve ter no máximo 100 caracteres' })
+  category?: string;
+
+  @IsOptional()
   @IsBoolean()
   published?: boolean;
 }
@@ -57,6 +62,11 @@ export class UpdatePostDto {
   @IsOptional()
   @IsUrl({}, { message: 'URL da imagem inválida' })
   imageUrl?: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100, { message: 'Categoria deve ter no máximo 100 caracteres' })
+  category?: string;
 
   @IsOptional()
   @IsBoolean()

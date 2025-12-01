@@ -22,20 +22,27 @@ type PostEditorProps = {
 
 export function PostEditor({ post, onSave, onCancel }: PostEditorProps) {
   const [formData, setFormData] = useState<Post>(
-    post || {
-      id: "",
-      title: "",
-      category: "",
-      date: new Date().toLocaleDateString("pt-BR", {
-        day: "2-digit",
-        month: "short",
-        year: "numeric",
-      }),
-      status: "draft",
-      excerpt: "",
-      content: "",
-      imageUrl: "",
-    }
+    post
+      ? {
+          ...post,
+          // Garantir que category seja preservada
+          category: post.category || "",
+          status: post.status || "draft",
+        }
+      : {
+          id: "",
+          title: "",
+          category: "",
+          date: new Date().toLocaleDateString("pt-BR", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          }),
+          status: "draft",
+          excerpt: "",
+          content: "",
+          imageUrl: "",
+        }
   );
 
   const handleSubmit = (e: React.FormEvent) => {

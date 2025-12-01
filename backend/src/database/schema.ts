@@ -22,6 +22,7 @@ export const posts = pgTable('posts', {
   slug: varchar('slug', { length: 255 }).notNull().unique(),
   content: text('content').notNull(),
   excerpt: text('excerpt'),
+  category: varchar('category', { length: 100 }),
   imageUrl: varchar('image_url', { length: 500 }),
   published: boolean('published').default(false).notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),

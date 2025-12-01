@@ -59,8 +59,10 @@ async function fetchApi<T>(
 
 // Posts API
 export const postsApi = {
-  getAll: async (): Promise<ApiResponse<Post[]>> => {
-    return fetchApi<ApiResponse<Post[]>>("/posts");
+  getAll: async (token?: string): Promise<ApiResponse<Post[]>> => {
+    return fetchApi<ApiResponse<Post[]>>("/posts", {
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    });
   },
 
   getBySlug: async (slug: string): Promise<ApiResponse<Post>> => {
@@ -70,30 +72,141 @@ export const postsApi = {
   getPublished: async (): Promise<ApiResponse<Post[]>> => {
     return fetchApi<ApiResponse<Post[]>>("/posts?published=true");
   },
+
+  create: async (
+    data: Partial<Post>,
+    token: string
+  ): Promise<ApiResponse<Post>> => {
+    return fetchApi<ApiResponse<Post>>("/posts", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  },
+
+  update: async (
+    id: string,
+    data: Partial<Post>,
+    token: string
+  ): Promise<ApiResponse<Post>> => {
+    return fetchApi<ApiResponse<Post>>(`/posts/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  },
+
+  delete: async (id: string, token: string): Promise<ApiResponse<void>> => {
+    return fetchApi<ApiResponse<void>>(`/posts/${id}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  },
 };
 
 // Areas API
 export const areasApi = {
-  getAll: async (): Promise<ApiResponse<Area[]>> => {
-    return fetchApi<ApiResponse<Area[]>>("/areas");
+  getAll: async (token?: string): Promise<ApiResponse<Area[]>> => {
+    return fetchApi<ApiResponse<Area[]>>("/areas", {
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    });
   },
 
   getById: async (id: string): Promise<ApiResponse<Area>> => {
     return fetchApi<ApiResponse<Area>>(`/areas/${id}`);
   },
+
+  create: async (
+    data: Partial<Area>,
+    token: string
+  ): Promise<ApiResponse<Area>> => {
+    return fetchApi<ApiResponse<Area>>("/areas", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  },
+
+  update: async (
+    id: string,
+    data: Partial<Area>,
+    token: string
+  ): Promise<ApiResponse<Area>> => {
+    return fetchApi<ApiResponse<Area>>(`/areas/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  },
+
+  delete: async (id: string, token: string): Promise<ApiResponse<void>> => {
+    return fetchApi<ApiResponse<void>>(`/areas/${id}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  },
 };
 
 // Schedules API
 export const schedulesApi = {
-  getAll: async (): Promise<ApiResponse<Schedule[]>> => {
-    return fetchApi<ApiResponse<Schedule[]>>("/schedules");
+  getAll: async (token?: string): Promise<ApiResponse<Schedule[]>> => {
+    return fetchApi<ApiResponse<Schedule[]>>("/schedules", {
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    });
+  },
+
+  create: async (
+    data: Partial<Schedule>,
+    token: string
+  ): Promise<ApiResponse<Schedule>> => {
+    return fetchApi<ApiResponse<Schedule>>("/schedules", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  },
+
+  update: async (
+    id: string,
+    data: Partial<Schedule>,
+    token: string
+  ): Promise<ApiResponse<Schedule>> => {
+    return fetchApi<ApiResponse<Schedule>>(`/schedules/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(data),
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  },
+
+  delete: async (id: string, token: string): Promise<ApiResponse<void>> => {
+    return fetchApi<ApiResponse<void>>(`/schedules/${id}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` },
+    });
   },
 };
 
 // Auth API (for admin)
 export const authApi = {
+  checkSetup: async (): Promise<
+    ApiResponse<{ needsSetup: boolean; hasAdmin: boolean }>
+  > => {
+    return fetchApi<ApiResponse<{ needsSetup: boolean; hasAdmin: boolean }>>(
+      "/auth/setup"
+    );
+  },
+
   login: async (credentials: LoginDto): Promise<ApiResponse<AuthResponse>> => {
     return fetchApi<ApiResponse<AuthResponse>>("/auth/login", {
+      method: "POST",
+      body: JSON.stringify(credentials),
+    });
+  },
+
+  register: async (
+    credentials: LoginDto & { name: string }
+  ): Promise<ApiResponse<AuthResponse>> => {
+    return fetchApi<ApiResponse<AuthResponse>>("/auth/register", {
       method: "POST",
       body: JSON.stringify(credentials),
     });

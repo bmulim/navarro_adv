@@ -22,7 +22,8 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "db:seed": "ts-node -r tsconfig-paths/register src/database/seed.ts"
+    "db:seed": "ts-node -r tsconfig-paths/register src/database/seed.ts",
+    "db:clear-users": "ts-node -r tsconfig-paths/register src/database/clear-users.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2",
