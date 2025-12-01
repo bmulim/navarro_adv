@@ -15,7 +15,7 @@ async function getAreas() {
 export default async function AreaDeAtuacaoPage() {
   const areas = await getAreas();
   const areasList = Array.isArray(areas) ? areas : [];
-  
+
   return (
     <div className="bg-(--color-background) pb-10 transition-colors duration-300 md:pb-16">
       <PageHeader

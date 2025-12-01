@@ -11,6 +11,7 @@ import { AreasModule } from './areas/areas.module';
 import { SchedulesModule } from './schedules/schedules.module';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
+import { TransformInterceptor } from './common/interceptors/transform.interceptor';
 import { ValidationPipe } from './common/pipes/validation.pipe';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { LoggerMiddleware } from './common/middlewares/logger.middleware';
@@ -38,6 +39,10 @@ import { LoggerMiddleware } from './common/middlewares/logger.middleware';
     {
       provide: APP_INTERCEPTOR,
       useClass: LoggingInterceptor,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TransformInterceptor,
     },
     {
       provide: APP_PIPE,

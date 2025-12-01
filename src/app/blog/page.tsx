@@ -16,7 +16,7 @@ async function getPosts() {
 export default async function BlogPage() {
   const posts = await getPosts();
   const postsList = Array.isArray(posts) ? posts : [];
-  
+
   return (
     <div className="bg-(--color-background) transition-colors duration-300">
       <PageHeader

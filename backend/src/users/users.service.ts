@@ -48,4 +48,15 @@ export class UsersService {
   async validatePassword(user: User, password: string): Promise<boolean> {
     return bcrypt.compare(password, user.password);
   }
+
+  async countUsers(): Promise<number> {
+    const db = this.databaseService.getDb();
+    const result = await db.select().from(users);
+    return result.length;
+  }
+
+  async hasAdminUser(): Promise<boolean> {
+    const count = await this.countUsers();
+    return count > 0;
+  }
 }

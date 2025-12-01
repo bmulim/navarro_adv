@@ -85,4 +85,12 @@ export class AuthService {
 
     return { id: user.id, email: user.email, name: user.name };
   }
+
+  async checkSetup() {
+    const hasAdmin = await this.usersService.hasAdminUser();
+    return {
+      needsSetup: !hasAdmin,
+      hasAdmin,
+    };
+  }
 }
