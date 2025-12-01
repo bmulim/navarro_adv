@@ -17,10 +17,14 @@ const STORAGE_KEY = "navarro-theme";
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window === "undefined") return "light";
-    
+
     try {
-      const storedTheme = window.localStorage.getItem(STORAGE_KEY) as Theme | null;
-      return storedTheme === "light" || storedTheme === "dark" ? storedTheme : "light";
+      const storedTheme = window.localStorage.getItem(
+        STORAGE_KEY
+      ) as Theme | null;
+      return storedTheme === "light" || storedTheme === "dark"
+        ? storedTheme
+        : "light";
     } catch {
       return "light";
     }

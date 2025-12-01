@@ -4,9 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:backend\"",
+    "dev:backend": "cd backend && npm run start:dev",
     "build": "next build",
+    "build:backend": "cd backend && npm run build",
     "start": "next start",
-    "lint": "eslint"
+    "start:backend": "cd backend && npm run start:prod",
+    "lint": "eslint",
+    "lint:backend": "cd backend && npm run lint"
   },
   "dependencies": {
     "next": "16.0.4",
