@@ -14,6 +14,8 @@ async function getAreas() {
 
 export default async function AreaDeAtuacaoPage() {
   const areas = await getAreas();
+  const areasList = Array.isArray(areas) ? areas : [];
+  
   return (
     <div className="bg-(--color-background) pb-10 transition-colors duration-300 md:pb-16">
       <PageHeader
@@ -25,7 +27,7 @@ export default async function AreaDeAtuacaoPage() {
       <Container className="gap-6 py-8 md:gap-10 md:py-12 lg:flex">
         <nav className="mb-6 lg:mb-0 lg:w-56">
           <ul className="flex gap-2 overflow-x-auto pb-2 lg:sticky lg:top-28 lg:flex-col lg:space-y-3 lg:overflow-visible lg:pb-0">
-            {areas.map((area) => (
+            {areasList.map((area) => (
               <li key={area.id} className="shrink-0 lg:shrink">
                 <a
                   className="block whitespace-nowrap rounded-xl border border-transparent bg-(--color-surface-alt) px-3 py-2 text-xs font-semibold text-(--color-primary-soft) transition hover:border-(--color-border) md:px-4 md:py-3 md:text-sm lg:whitespace-normal"
@@ -38,14 +40,14 @@ export default async function AreaDeAtuacaoPage() {
           </ul>
         </nav>
         <div className="flex-1 space-y-8 md:space-y-12">
-          {areas.length === 0 ? (
+          {areasList.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-(--color-foreground-muted)">
                 Nenhuma área de atuação cadastrada ainda.
               </p>
             </div>
           ) : (
-            areas.map((area) => (
+            areasList.map((area) => (
               <section
                 key={area.id}
                 id={area.id}
